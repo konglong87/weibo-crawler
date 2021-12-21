@@ -224,6 +224,7 @@ class Weibo(object):
         # 创建'user'表
         create_table = """
                 CREATE TABLE IF NOT EXISTS user (
+				iid  bigint(32) NOT NULL AUTO_INCREMENT,
                 id varchar(20) NOT NULL,
                 screen_name varchar(30),
                 gender varchar(10),
@@ -245,7 +246,7 @@ class Weibo(object):
                 verified BOOLEAN DEFAULT 0,
                 verified_type INT,
                 verified_reason varchar(140),
-                PRIMARY KEY (id)
+                PRIMARY KEY (iid)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4"""
         self.mysql_create_table(mysql_config, create_table)
         self.mysql_insert(mysql_config, 'user', [self.user])
@@ -1196,6 +1197,7 @@ class Weibo(object):
         # 创建'weibo'表
         create_table = """
                 CREATE TABLE IF NOT EXISTS weibo (
+				iid  bigint(32) NOT NULL AUTO_INCREMENT,
                 id varchar(20) NOT NULL,
                 bid varchar(12) NOT NULL,
                 user_id varchar(20),
@@ -1213,7 +1215,7 @@ class Weibo(object):
                 comments_count INT,
                 reposts_count INT,
                 retweet_id varchar(20),
-                PRIMARY KEY (id)
+                PRIMARY KEY (iid)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4"""
         self.mysql_create_table(mysql_config, create_table)
         weibo_list = []
