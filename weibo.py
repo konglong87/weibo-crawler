@@ -52,6 +52,7 @@ class Weibo(object):
         self.original_pic_download = config[
             'original_pic_download']  # 取值范围为0、1, 0代表不下载原创微博图片,1代表下载
         self.retweet_pic_download = config[
+			
             'retweet_pic_download']  # 取值范围为0、1, 0代表不下载转发微博图片,1代表下载
         self.original_video_download = config[
             'original_video_download']  # 取值范围为0、1, 0代表不下载原创微博视频,1代表下载
@@ -246,6 +247,8 @@ class Weibo(object):
                 verified BOOLEAN DEFAULT 0,
                 verified_type INT,
                 verified_reason varchar(140),
+				ctime timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+				utime timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                 PRIMARY KEY (iid)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4"""
         self.mysql_create_table(mysql_config, create_table)
@@ -1215,6 +1218,8 @@ class Weibo(object):
                 comments_count INT,
                 reposts_count INT,
                 retweet_id varchar(20),
+				ctime timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+				utime timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                 PRIMARY KEY (iid)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4"""
         self.mysql_create_table(mysql_config, create_table)
